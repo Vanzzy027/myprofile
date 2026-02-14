@@ -1,26 +1,26 @@
 [
   {
     "category": "Languages",
-    "items": ["TypeScript", "JavaScript", "Python", "C/C++", "PHP", "SQL"]
+    "items": ["TypeScript", "JavaScript", "Python", "Dart", "C/C++", "PHP", "SQL"]
   },
   {
     "category": "Frameworks & Tools",
-    "items": ["React", "Tailwind CSS", "Node.js", "Express", "FastAPI", "Firebase", "DaisyUI"]
+    "items": ["React", "Flutter", "Node.js", "Express", "REST API","FastAPI", "TinyML", "Firebase", "Arduino IDE", "PlatformIO", "DaisyUI", "Tailwind CSS"]
   },
   {
     "category": "IoT & Embedded",
-    "items": ["ESP32", "NodeMCU", "Raspberry Pi", "MQTT", "PIR Sensors", "TinyML"]
+    "items": ["ESP32", "NodeMCU","Arduino", "Raspberry Pi", "MQTT", "Digital Electronics", "Sensors & Actuators", "TinyML"]
   },
   {
     "category": "Cloud & DevOps",
-    "items": ["Azure", "Netlify", "Firebase", "Git", "GitHub Actions"]
+    "items": ["Azure", "Netlify", "Vercel", "Render", "Firebase", "Git", "GitHub Actions"]
   },
   {
     "category": "Databases",
-    "items": ["MySQL", "PostgreSQL", "Firestore", "SQLite"]
+    "items": ["MySQL", "PostgreSQL", "Firebase RTDB", "Firestore", "SQLite"]
   },
   {
     "category": "Mobile",
-    "items": ["React Native", "Expo", "Android Studio"]
+    "items": ["Flutter", "React Native", "Android Studio"]
   }
 ]

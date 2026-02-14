@@ -14,7 +14,7 @@ export default function Contact() {
           {/* Info */}
           <div className="lg:col-span-2 space-y-6">
             <p className="text-base-content/70 leading-relaxed">
-              Whether you have a project idea, a job opportunity, or just want to connect — don't hesitate to reach out. I'll respond within 24 hours.
+              Whether you have a project idea, a job opportunity, or just want to connect - don't hesitate to reach out. I'll respond within 24 hours.
             </p>
 
             <div className="space-y-4">

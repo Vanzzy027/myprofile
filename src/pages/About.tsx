@@ -55,7 +55,7 @@ export default function About() {
             </a>
           </div>
 
-          {/* Right — Skills & Education */}
+          {/* Right - Skills & Education */}
           <div className="lg:col-span-2 space-y-10">
             <div>
               <h2 className="text-xl font-bold mb-4">Technical Skills</h2>
@@ -77,7 +77,7 @@ export default function About() {
                 {educationData.map((edu) => (
                   <div key={edu.institution} className="card bg-base-200 border border-base-300 p-4">
                     <p className="font-semibold">{edu.institution}</p>
-                    <p className="text-sm text-base-content/70">{edu.degree} — {edu.field}</p>
+                    <p className="text-sm text-base-content/70">{edu.degree} - {edu.field}</p>
                     <div className="flex justify-between text-xs text-base-content/40 mt-1">
                       <span>{edu.year}</span>
                       {edu.grade && <span>{edu.grade}</span>}

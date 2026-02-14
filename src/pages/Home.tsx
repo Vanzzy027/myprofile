@@ -56,7 +56,7 @@ export default function Home() {
 
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-4 border-brand-coral/30 shadow-2xl">
+                <div className="w-65 h-65 md:w-70 md:h-70 rounded-3xl overflow-hidden border-4 border-brand-coral/30 shadow-2xl">
                   <img src={about.photo} alt={about.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-brand-coral/10 blur-xl" />
@@ -103,7 +103,7 @@ export default function Home() {
         <div className="container-max text-center">
           <h2 className="text-3xl font-bold mb-4">Let's build something great together</h2>
           <p className="text-white/70 mb-8 max-w-lg mx-auto">
-            Whether it's a web app, an IoT system, or a mobile product — I'm always open to exciting collaborations.
+            Whether it's a web app, an IoT system, or a mobile product - I'm always open to exciting collaborations.
           </p>
           <Link to="/contact" className="btn bg-brand-coral border-brand-coral text-white hover:bg-brand-coral/90 gap-2">
             Start a Conversation <ArrowRight size={16} />

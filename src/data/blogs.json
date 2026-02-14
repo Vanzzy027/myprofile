@@ -5,7 +5,7 @@
     "date": "2025-01-20",
     "excerpt": "A practical guide to connecting your ESP32 to an MQTT broker and streaming sensor data to a web dashboard.",
     "tags": ["IoT", "ESP32", "MQTT", "Tutorial"],
-    "coverImage": "/assets/blogs/esp32-mqtt.jpg",
+    "coverImage": "/assets/blogs/IoT Poster.jpg", 
     "file": "/blogs/getting-started-with-esp32-mqtt.md"
   },
   {
@@ -14,7 +14,7 @@
     "date": "2025-02-10",
     "excerpt": "How I connected IoT sensor data to a live React dashboard using Firebase Realtime Database.",
     "tags": ["Firebase", "React", "IoT", "Web"],
-    "coverImage": "/assets/blogs/firebase-dashboard.jpg",
+    "coverImage": "/assets/blogs/firebase-dashboard.png",
     "file": "/blogs/building-realtime-dashboards-firebase.md"
   }
 ]
