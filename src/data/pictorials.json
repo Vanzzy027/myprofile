@@ -1,0 +1,13 @@
+[
+  {
+    "id": "gdsc-iot-2024",
+    "event": "GDSC IoT & Robotics Workshop 2024",
+    "date": "2024-03-15",
+    "description": "Photos from the hands-on IoT workshop held at Kirinyaga University.",
+    "images": [
+      "/assets/events/gdsc-iot-1.jpg",
+      "/assets/events/gdsc-iot-2.jpg",
+      "/assets/events/gdsc-iot-3.jpg"
+    ]
+  }
+]

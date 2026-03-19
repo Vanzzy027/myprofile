@@ -1,0 +1,22 @@
+[
+  {
+    "id": "gdsc-iot-workshop-2024",
+    "title": "IoT & Robotics Workshop",
+    "date": "2024-03-15",
+    "role": "Lead Facilitator — GDSC IoT & Robotics",
+    "description": "Hands-on workshop introducing students to ESP32, sensor integration, and MQTT protocols.",
+    "outcomes": ["40+ students trained", "5 prototype projects built", "Partnership with university lab"],
+    "images": ["/assets/events/gdsc-iot-1.jpg"],
+    "type": "workshop"
+  },
+  {
+    "id": "code-tech-society-2024",
+    "title": "Code & Tech Society — Vice Chair",
+    "date": "2024-01-10",
+    "role": "Vice Chairperson",
+    "description": "Led student tech community initiatives, organised hackathons and coding challenges.",
+    "outcomes": ["3 hackathons organised", "200+ active members", "Industry speaker sessions"],
+    "images": [],
+    "type": "leadership"
+  }
+]

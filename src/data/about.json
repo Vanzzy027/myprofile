@@ -1,0 +1,15 @@
+{
+  "name": "Evanson Mathenge Kariuki",
+  "title": "Software Engineer · IoT Developer",
+  "location": "Embu, Kenya",
+  "openToRemote": true,
+  "summary": "Information Technology and Software Engineering graduate with hands-on experience in full-stack web development, IoT systems, and mobile applications. Passionate about building solutions that bridge hardware and software — from occupancy-based smart lighting to cloud-connected monitoring dashboards.",
+  "email": "mathengevan@gmail.com",
+  "phone": "0112178578",
+  "social": {
+    "github": "https://github.com/Vanzzy027",
+    "linkedin": "https://surl.li/qjbtmd"
+  },
+  "photo": "/assets/me/profile.jpg",
+  "cvUrl": "/assets/evanson-cv.pdf"
+}

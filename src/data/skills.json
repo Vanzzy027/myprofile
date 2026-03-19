@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Languages",
+    "items": ["TypeScript", "JavaScript", "Python", "C/C++", "PHP", "SQL"]
+  },
+  {
+    "category": "Frameworks & Tools",
+    "items": ["React", "Tailwind CSS", "Node.js", "Express", "FastAPI", "Firebase", "DaisyUI"]
+  },
+  {
+    "category": "IoT & Embedded",
+    "items": ["ESP32", "NodeMCU", "Raspberry Pi", "MQTT", "PIR Sensors", "TinyML"]
+  },
+  {
+    "category": "Cloud & DevOps",
+    "items": ["Azure", "Netlify", "Firebase", "Git", "GitHub Actions"]
+  },
+  {
+    "category": "Databases",
+    "items": ["MySQL", "PostgreSQL", "Firestore", "SQLite"]
+  },
+  {
+    "category": "Mobile",
+    "items": ["React Native", "Expo", "Android Studio"]
+  }
+]

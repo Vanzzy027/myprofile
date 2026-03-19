@@ -1,0 +1,72 @@
+[
+  {
+    "id": "car-rental-platform",
+    "title": "Car Rental Platform",
+    "category": "Web",
+    "tags": ["React", "Node.js", "MySQL", "Azure"],
+    "shortDescription": "Vehicle booking platform with online reservations and fleet management.",
+    "longDescription": "A full-stack car rental platform built for Vanske Car Rental. Features include real-time vehicle availability, online booking with date pickers, admin dashboard for fleet management, and Azure-hosted backend with MySQL database. Built with React on the frontend and Node.js/Express on the backend.",
+    "role": "Full-Stack Developer",
+    "year": 2025,
+    "liveUrl": "https://vanskecarrental.netlify.app/",
+    "repoUrl": "https://github.com/Vanzzy027/car-rental",
+    "images": ["/assets/projects/car-rental-1.png"],
+    "featured": true
+  },
+  {
+    "id": "smart-lighting-system",
+    "title": "Smart Lighting System",
+    "category": "IoT",
+    "tags": ["ESP32", "MQTT", "PIR", "Relays", "C++"],
+    "shortDescription": "Occupancy-triggered lighting automation using ESP32 and PIR sensors.",
+    "longDescription": "An IoT system that detects room occupancy via PIR sensors connected to an ESP32 microcontroller. Lights are controlled via relay modules and the system communicates state over MQTT, enabling remote monitoring via a web dashboard. Reduces energy waste in unoccupied spaces.",
+    "role": "IoT Developer",
+    "year": 2025,
+    "liveUrl": null,
+    "repoUrl": "https://github.com/Vanzzy027/smart-lighting",
+    "images": ["/assets/projects/smart-lighting-1.png"],
+    "featured": true
+  },
+  {
+    "id": "smart-meal-planning-app",
+    "title": "Smart Meal Planning App",
+    "category": "Mobile",
+    "tags": ["React Native", "Expo", "Firebase", "AI"],
+    "shortDescription": "AI-assisted meal planner with grocery list generation (in progress).",
+    "longDescription": "A cross-platform mobile application that recommends weekly meal plans based on user dietary preferences and available ingredients. Integrates AI suggestions, automatic grocery list generation, and Firebase for real-time sync across devices. Currently in active development.",
+    "role": "Mobile Developer",
+    "year": 2025,
+    "liveUrl": null,
+    "repoUrl": "https://github.com/Vanzzy027/meal-planner",
+    "images": ["/assets/projects/meal-planner-1.png"],
+    "featured": false
+  },
+  {
+    "id": "iot-monitoring-dashboard",
+    "title": "Firebase IoT Monitoring Dashboard",
+    "category": "IoT",
+    "tags": ["Firebase", "React", "ESP32", "Realtime DB"],
+    "shortDescription": "Real-time sensor monitoring dashboard connected to Firebase.",
+    "longDescription": "A web dashboard that visualises real-time data from IoT sensors via Firebase Realtime Database. Sensors stream temperature, humidity, and motion data from ESP32 nodes. The React frontend updates live without page refresh, with historical chart views and alert thresholds.",
+    "role": "Full-Stack IoT Developer",
+    "year": 2024,
+    "liveUrl": null,
+    "repoUrl": "https://github.com/Vanzzy027/iot-dashboard",
+    "images": ["/assets/projects/iot-dashboard-1.png"],
+    "featured": true
+  },
+  {
+    "id": "student-management-system",
+    "title": "Student Management System",
+    "category": "Software",
+    "tags": ["PHP", "MySQL", "Bootstrap", "CRUD"],
+    "shortDescription": "Web-based student records and grading management system.",
+    "longDescription": "A complete student information system built for academic institutions. Features include student enrollment, course management, grade entry and report generation, and role-based access for admin, lecturers, and students. Built with PHP and MySQL with a Bootstrap frontend.",
+    "role": "Backend Developer",
+    "year": 2024,
+    "liveUrl": null,
+    "repoUrl": "https://github.com/Vanzzy027/student-management",
+    "images": ["/assets/projects/sms-1.png"],
+    "featured": false
+  }
+]
