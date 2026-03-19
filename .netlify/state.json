@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Nairobi",
+			"country": {
+				"code": "KE",
+				"name": "Kenya"
+			},
+			"subdivision": {
+				"code": "30",
+				"name": "Nairobi County"
+			},
+			"timezone": "Africa/Nairobi",
+			"latitude": -1.2841,
+			"longitude": 36.8155
+		},
+		"timestamp": 1773955502496
+	}
+}
