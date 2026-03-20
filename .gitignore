@@ -25,3 +25,4 @@ echo ".env" >> .gitignore
 
 # Local Netlify folder
 .netlify
+.git-backup/
