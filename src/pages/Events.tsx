@@ -43,7 +43,7 @@ export default function Events() {
         {pictorials.map((group) => (
           <div key={group.id} className="mb-10">
             <h3 className="font-semibold text-lg mb-1">{group.event}</h3>
-            <p className="text-sm text-base-content/40 mb-4">{group.date} — {group.description}</p>
+            <p className="text-sm text-base-content/40 mb-4">{group.date} - {group.description}</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {group.images.map((img, i) => (
                 <div key={i} className="rounded-xl overflow-hidden h-40 border border-base-300 bg-base-200">
