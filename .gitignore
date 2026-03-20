@@ -22,3 +22,6 @@ echo ".env" >> .gitignore
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify

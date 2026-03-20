@@ -5,6 +5,11 @@ import { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import type { ContactFormData } from "../../types";
 
+import emailjs from "@emailjs/browser";  // to be removed when i switch to Netlify functions + Resend
+
+
+
+
 const schema = z.object({
   name:    z.string().min(2, "Name must be at least 2 characters"),
   email:   z.string().email("Please enter a valid email address"),
@@ -21,21 +26,48 @@ export default function ContactForm() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: ContactFormData) => {
-    setStatus("sending");
-    try {
-      const res = await fetch("/.netlify/functions/sendEmail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Send failed");
-      setStatus("success");
-      reset();
-    } catch {
-      setStatus("error");
-    }
-  };
+// Shortterm: To work with emailjs, which is free and easier to set up without a backend. Will switch to Netlify functions + Resend when I get a domain and can set up email forwarding.
+const onSubmit = async (data: ContactFormData) => {
+  setStatus("sending");
+
+  try {
+    await emailjs.send(
+      "service_9f8k4b7",
+      "template_iu8zmhc",
+      {
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      },
+      "lTt7-qCCYfkQmJpzy"
+    );
+
+    setStatus("success");
+    reset();
+  } catch (error) {
+    console.error("EmailJS error:", error);
+    setStatus("error");
+  }
+};
+
+  //To work when i get a domain
+   
+  // const onSubmit = async (data: ContactFormData) => {
+  //   setStatus("sending");
+  //   try {
+  //     const res = await fetch("/.netlify/functions/sendEmail", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(data),
+  //     });
+  //     if (!res.ok) throw new Error("Send failed");
+  //     setStatus("success");
+  //     reset();
+  //   } catch {
+  //     setStatus("error");
+  //   }
+  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
