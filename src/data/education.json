@@ -1,16 +1,30 @@
 [
   {
-    "institution": "Kirinyaga University",
+    "institution": "Teach2Give",
+    "degree": "Software Engineering Bootcamp",
+    "field": "Software Engineering",
+    "year": "2025",
+    "grade": "Certified Software Engineer"
+  },
+    {
+    "institution": "University of Embu",
     "degree": "Bachelor of Science",
     "field": "Information Technology & Software Engineering",
     "year": "2021 – 2025",
-    "grade": "Second Class Honours (Upper Division)"
+    "grade": "Second Class Honours"
+  },
+    {
+    "institution": "KASNEB",
+    "degree": "Certified Information Systems Solutions Expert",
+    "field": "Information Systems",
+    "year": "2024",
+    "grade": "Certified"
   },
   {
-    "institution": "Kenya National Examinations Council",
+    "institution": "Endarasha Boys High School",
     "degree": "Kenya Certificate of Secondary Education",
-    "field": "Sciences",
+    "field": "",
     "year": "2017 – 2021",
-    "grade": "B Plain"
+    "grade": "C+ Plain"
   }
 ]

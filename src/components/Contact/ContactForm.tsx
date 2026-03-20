@@ -37,12 +37,11 @@ const onSubmit = async (data: ContactFormData) => {
       {
         name: data.name,
         email: data.email,
-        subject: data.subject,
+        subject: `[Portfolio] ${data.subject}`, 
         message: data.message,
       },
       "lTt7-qCCYfkQmJpzy"
     );
-
     setStatus("success");
     reset();
   } catch (error) {

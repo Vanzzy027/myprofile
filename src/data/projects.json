@@ -10,7 +10,7 @@
     "year": 2025,
     "liveUrl": "https://vanskecarrental.netlify.app/",
     "repoUrl": "https://github.com/Vanzzy027/car-rental",
-    "images": ["/assets/projects/car-rental-1.png"],
+    "images": ["/assets/projects/car-rental-1.png", "/assets/projects/car-rental-2.png", "/assets/projects/car-rental-3.png", "/assets/projects/car-rental-4.png"],
     "featured": true
   },
   {
@@ -24,7 +24,7 @@
     "year": 2025,
     "liveUrl": null,
     "repoUrl": "https://github.com/Vanzzy027/smart-lighting",
-    "images": ["/assets/projects/smart-lighting-1.png"],
+    "images": ["/assets/projects/smart-lighting-1.jpeg","/assets/projects/smart-lighting-2.jpeg","/assets/projects/smart-lighting-3.jpeg","/assets/projects/smart-lighting-4.jpeg"],
     "featured": true
   },
   {
@@ -43,16 +43,16 @@
   },
   {
     "id": "iot-monitoring-dashboard",
-    "title": "Firebase IoT Monitoring Dashboard",
+    "title": "Firebase IoT Greenhouse Monitoring Dashboard",
     "category": "IoT",
-    "tags": ["Firebase", "React", "ESP32", "Realtime DB"],
+    "tags": ["Firebase", "HTML", "CSS", "Javascript", "ESP32", "Realtime DB"],
     "shortDescription": "Real-time sensor monitoring dashboard connected to Firebase.",
-    "longDescription": "A web dashboard that visualises real-time data from IoT sensors via Firebase Realtime Database. Sensors stream temperature, humidity, and motion data from ESP32 nodes. The React frontend updates live without page refresh, with historical chart views and alert thresholds.",
+    "longDescription": "A web dashboard that visualises real-time data from IoT sensors via Firebase Realtime Database. Sensors stream temperature, humidity, and and soil moisture data from ESP32 nodes. The React frontend updates live without page refresh, with historical chart views and alert thresholds.",
     "role": "Full-Stack IoT Developer",
     "year": 2024,
     "liveUrl": null,
     "repoUrl": "https://github.com/Vanzzy027/iot-dashboard",
-    "images": ["/assets/projects/iot-dashboard-1.png"],
+    "images": ["/assets/projects/iot-dashboard-1.png","/assets/projects/iot-dashboard-2.png","/assets/projects/iot-dashboard-3.png","/assets/projects/iot-dashboard-4.png","/assets/projects/iot-dashboard-5.png","/assets/projects/iot-dashboard-6.png"],
     "featured": true
   },
   {
