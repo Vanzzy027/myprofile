@@ -1,4 +1,4 @@
-# Evanson Kariuki — Developer Portfolio
+# Evanson Kariuki - Developer Portfolio
 
 > **Stack:** React 18 · TypeScript · Vite · Tailwind CSS · DaisyUI · lucide-react · react-hook-form · Zod · EmailJS (temporary) · Netlify Functions · Resend (pending)
 
@@ -11,13 +11,13 @@
 3. [Folder Structure](#3-folder-structure)
 4. [Tech Stack & Dependencies](#4-tech-stack--dependencies)
 5. [Environment Variables](#5-environment-variables)
-6. [Quick Reference — Content Updates](#6-quick-reference--content-updates)
+6. [Quick Reference - Content Updates](#6-quick-reference--content-updates)
 7. [JSON Schema Reference](#7-json-schema-reference)
 8. [Pages & Routes](#8-pages--routes)
 9. [Component Map](#9-component-map)
 10. [Theme & Colors](#10-theme--colors)
-11. [Contact Form — Current Setup (EmailJS)](#11-contact-form--current-setup-emailjs)
-12. [Contact Form — Migration to Resend + Netlify Functions](#12-contact-form--migration-to-resend--netlify-functions)
+11. [Contact Form - Current Setup (EmailJS)](#11-contact-form--current-setup-emailjs)
+12. [Contact Form - Migration to Resend + Netlify Functions](#12-contact-form--migration-to-resend--netlify-functions)
 13. [EmailJS Template Reference](#13-emailjs-template-reference)
 14. [Running Locally](#14-running-locally)
 15. [Deployment (Netlify)](#15-deployment-netlify)
@@ -29,9 +29,9 @@
 
 ## 1. Project Overview
 
-A production-ready multi-page developer portfolio for **Evanson Mathenge Kariuki** — Software Engineer and IoT Developer based in Embu, Kenya.
+A production-ready multi-page developer portfolio for **Evanson Mathenge Kariuki** - Software Engineer and IoT Developer based in Embu, Kenya.
 
-All content (projects, blog posts, events, skills, personal info) is driven by JSON files in `src/data/`. Adding or editing content requires **only editing those JSON files** — no component changes needed.
+All content (projects, blog posts, events, skills, personal info) is driven by JSON files in `src/data/`. Adding or editing content requires **only editing those JSON files** - no component changes needed.
 
 Blog posts are written in **Markdown** (`.md` files in `public/blogs/`) and rendered at runtime using `react-markdown`.
 
@@ -47,7 +47,7 @@ Blog posts are written in **Markdown** (`.md` files in `public/blogs/`) and rend
 | Tailwind CSS + DaisyUI setup | ✅ Complete | Custom theme with brand colours |
 | Dark / Light mode | ✅ Complete | System preference detection + manual toggle |
 | Theme persists across reloads | ✅ Complete | Saved in `localStorage` |
-| Layout — Header + Footer | ✅ Complete | Sticky header, mobile hamburger menu |
+| Layout - Header + Footer | ✅ Complete | Sticky header, mobile hamburger menu |
 | Home page (Hero + Featured Projects + CTA) | ✅ Complete | |
 | About page (bio, skills, education) | ✅ Complete | |
 | Projects page (filter by category + search) | ✅ Complete | |
@@ -57,7 +57,7 @@ Blog posts are written in **Markdown** (`.md` files in `public/blogs/`) and rend
 | Events & Leadership page | ✅ Complete | Workshops + pictorials grid |
 | Contact page (layout + info cards) | ✅ Complete | |
 | Contact form (react-hook-form + Zod validation) | ✅ Complete | |
-| Contact form — EmailJS (temporary) | ✅ Complete | Works without a domain |
+| Contact form - EmailJS (temporary) | ✅ Complete | Works without a domain |
 | Branded HTML email template | ✅ Complete | Uses brand colours, structured layout |
 | JSON data files seeded with CV content | ✅ Complete | |
 | Sample blog posts in Markdown | ✅ Complete | 2 sample posts in `public/blogs/` |
@@ -218,10 +218,10 @@ pnpm add -D tailwindcss postcss autoprefixer @types/node @netlify/functions
 
 ## 5. Environment Variables
 
-### `.env` (local — never commit this file)
+### `.env` (local - never commit this file)
 
 ```bash
-# Active now (EmailJS — no backend needed)
+# Active now (EmailJS - no backend needed)
 VITE_EMAILJS_SERVICE_ID=service_9f8k4b7
 VITE_EMAILJS_TEMPLATE_ID=template_iu8zmhc
 VITE_EMAILJS_PUBLIC_KEY=lTt7-qCCYfkQmJpzy
@@ -232,7 +232,7 @@ CONTACT_EMAIL=mathengevan@gmail.com
 VITE_SITE_URL=http://localhost:5173
 ```
 
-### `.env.example` (commit this — safe template for others)
+### `.env.example` (commit this - safe template for others)
 
 ```bash
 VITE_EMAILJS_SERVICE_ID=your_service_id
@@ -255,7 +255,7 @@ Or go to: **Netlify Dashboard → Site → Site Configuration → Environment Va
 
 ---
 
-## 6. Quick Reference — Content Updates
+## 6. Quick Reference - Content Updates
 
 > This is the section you'll use most often. All content lives in `src/data/`.
 
@@ -284,13 +284,13 @@ Or go to: **Netlify Dashboard → Site → Site Configuration → Environment Va
 ```
 
 3. Add the project image to `public/assets/projects/my-project-1.png`
-4. Done — the card appears in `/projects` and the detail page is live at `/projects/my-new-project`
+4. Done - the card appears in `/projects` and the detail page is live at `/projects/my-new-project`
 
 **Valid category values** (used for the filter buttons):
 `"Web"` · `"Mobile"` · `"IoT"` · `"Software"` · `"PoS"`
 > Adding a new category string automatically creates a new filter button.
 
-**`featured: true`** — shows the project in the Home page featured strip.
+**`featured: true`** - shows the project in the Home page featured strip.
 
 ---
 
@@ -302,7 +302,7 @@ Open `src/data/projects.json`, find the object by `"id"`, edit any fields, save.
 
 ### ➕ Write a new blog post
 
-**Step 1 — Add entry to `src/data/blogs.json`:**
+**Step 1 - Add entry to `src/data/blogs.json`:**
 
 ```json
 {
@@ -316,7 +316,7 @@ Open `src/data/projects.json`, find the object by `"id"`, edit any fields, save.
 }
 ```
 
-**Step 2 — Create the Markdown file at `public/blogs/my-blog-post-slug.md`:**
+**Step 2 - Create the Markdown file at `public/blogs/my-blog-post-slug.md`:**
 
 ```markdown
 ---
@@ -335,7 +335,7 @@ Your content here. Supports full **Markdown**:
 ```
 
 3. Add cover image to `public/assets/blogs/` (optional)
-4. Done — post appears at `/blogs/my-blog-post-slug`
+4. Done - post appears at `/blogs/my-blog-post-slug`
 
 ---
 
@@ -447,11 +447,11 @@ Edit `src/data/education.json`:
 
 ## 7. JSON Schema Reference
 
-### `projects.json` — full schema
+### `projects.json` - full schema
 
 ```ts
 {
-  id: string             // URL slug — must be unique, no spaces (use hyphens)
+  id: string             // URL slug - must be unique, no spaces (use hyphens)
   title: string          // Display title
   category: string       // Filter category: "Web" | "Mobile" | "IoT" | "Software" | "PoS"
   tags: string[]         // Technology tags shown on card and detail page
@@ -467,11 +467,11 @@ Edit `src/data/education.json`:
 }
 ```
 
-### `blogs.json` — full schema
+### `blogs.json` - full schema
 
 ```ts
 {
-  id: string          // URL slug — must match the .md filename
+  id: string          // URL slug - must match the .md filename
   title: string
   date: string        // ISO format: "YYYY-MM-DD"
   excerpt: string     // Short summary for listing page
@@ -481,7 +481,7 @@ Edit `src/data/education.json`:
 }
 ```
 
-### `events.json` — full schema
+### `events.json` - full schema
 
 ```ts
 {
@@ -496,7 +496,7 @@ Edit `src/data/education.json`:
 }
 ```
 
-### `pictorials.json` — full schema
+### `pictorials.json` - full schema
 
 ```ts
 {
@@ -620,9 +620,9 @@ To change the default theme colours, edit the `daisyui.themes` block in `tailwin
 
 ---
 
-## 11. Contact Form — Current Setup (EmailJS)
+## 11. Contact Form - Current Setup (EmailJS)
 
-The form currently uses **EmailJS** — this works immediately without a backend or domain.
+The form currently uses **EmailJS** - this works immediately without a backend or domain.
 
 ### File: `src/components/Contact/ContactForm.tsx`
 
@@ -661,7 +661,7 @@ await emailjs.send(
 ### EmailJS template subject line (set in EmailJS dashboard)
 
 ```
-[Portfolio] {{subject}} — from {{name}}
+[Portfolio] {{subject}} - from {{name}}
 ```
 
 ### EmailJS `Reply-To` field (set in EmailJS dashboard)
@@ -674,20 +674,20 @@ This means when you hit **Reply** in Gmail, it replies to the sender automatical
 
 ---
 
-## 12. Contact Form — Migration to Resend + Netlify Functions
+## 12. Contact Form - Migration to Resend + Netlify Functions
 
 > **Do this when you have a verified domain.**
 
 The Netlify Function is already written and ready at `netlify/functions/sendEmail.ts`. You only need to:
 
-### Step 1 — Get a domain and verify it with Resend
+### Step 1 - Get a domain and verify it with Resend
 
 1. Buy a domain (Namecheap, Google Domains, etc.)
 2. Go to https://resend.com → **Domains → Add Domain**
 3. Add the DNS records Resend gives you (TXT + MX records)
 4. Get your API key: **Resend Dashboard → API Keys → Create API Key**
 
-### Step 2 — Set environment variables on Netlify
+### Step 2 - Set environment variables on Netlify
 
 ```bash
 netlify env:set RESEND_API_KEY re_your_actual_resend_key
@@ -696,7 +696,7 @@ netlify env:set CONTACT_EMAIL mathengevan@gmail.com
 
 Or via the Netlify UI: **Site → Site Configuration → Environment Variables**
 
-### Step 3 — Update `ContactForm.tsx`
+### Step 3 - Update `ContactForm.tsx`
 
 In `src/components/Contact/ContactForm.tsx`:
 
@@ -726,7 +726,7 @@ const onSubmit = async (data: ContactFormData) => {
 };
 ```
 
-### Step 4 — Update the `from` address in the Netlify Function
+### Step 4 - Update the `from` address in the Netlify Function
 
 In `netlify/functions/sendEmail.ts`, update this line:
 
@@ -738,7 +738,7 @@ from: "Portfolio Contact <onboarding@resend.dev>",
 from: "Evanson Kariuki <contact@yourdomain.com>",
 ```
 
-### Step 5 — Test locally with Netlify Dev
+### Step 5 - Test locally with Netlify Dev
 
 ```bash
 netlify dev
@@ -746,13 +746,13 @@ netlify dev
 
 This runs both the Vite dev server and the Netlify Functions together. Submit the contact form and check your inbox.
 
-### Step 6 — Deploy
+### Step 6 - Deploy
 
 ```bash
 netlify deploy --prod
 ```
 
-### Step 7 — Optionally uninstall EmailJS
+### Step 7 - Optionally uninstall EmailJS
 
 Once Resend is working:
 
@@ -822,10 +822,10 @@ cp .env.example .env
 ### Start development server
 
 ```bash
-# Option A — Vite only (faster, but contact form Netlify function won't work)
+# Option A - Vite only (faster, but contact form Netlify function won't work)
 pnpm dev
 
-# Option B — Netlify Dev (Vite + Functions together, recommended)
+# Option B - Netlify Dev (Vite + Functions together, recommended)
 netlify dev
 ```
 
@@ -865,7 +865,7 @@ netlify deploy --prod
 netlify deploy --prod
 ```
 
-Or push to your connected GitHub branch — Netlify auto-deploys on every push to `main`.
+Or push to your connected GitHub branch - Netlify auto-deploys on every push to `main`.
 
 ### `netlify.toml` (already configured)
 
@@ -881,7 +881,7 @@ Or push to your connected GitHub branch — Netlify auto-deploys on every push t
   status = 200
 ```
 
-The `[[redirects]]` rule is critical — it makes React Router work on Netlify (all routes return `index.html` and React Router handles the rest client-side).
+The `[[redirects]]` rule is critical - it makes React Router work on Netlify (all routes return `index.html` and React Router handles the rest client-side).
 
 ---
 
@@ -930,22 +930,22 @@ gdsc-iot-workshop-1.jpg
 
 ### Medium priority
 
-- [ ] **SEO meta tags** — install `react-helmet-async`, add `<title>` and `<meta description>` per page
-- [ ] **Open Graph tags** — for project pages so they render nicely when shared on LinkedIn/Twitter
-- [ ] **Blog cover images** — add to `public/assets/blogs/`
-- [ ] **Event photos** — add to `public/assets/events/` and update `pictorials.json`
+- [ ] **SEO meta tags** - install `react-helmet-async`, add `<title>` and `<meta description>` per page
+- [ ] **Open Graph tags** - for project pages so they render nicely when shared on LinkedIn/Twitter
+- [ ] **Blog cover images** - add to `public/assets/blogs/`
+- [ ] **Event photos** - add to `public/assets/events/` and update `pictorials.json`
 
 ### Nice to have
 
-- [ ] **Page transition animations** — `framer-motion` for smooth route transitions
-- [ ] **Project image lightbox** — click to enlarge gallery images
-- [ ] **Blog reading time estimate** — calculate from word count
-- [ ] **Blog post search** — similar to projects filter
-- [ ] **Sitemap.xml** — generate from JSON for better SEO
-- [ ] **robots.txt** — in `public/`
-- [ ] **PWA / offline support** — `vite-plugin-pwa`
-- [ ] **Component tests** — Vitest + React Testing Library
-- [ ] **Analytics** — Netlify Analytics or Plausible (privacy-friendly)
+- [ ] **Page transition animations** - `framer-motion` for smooth route transitions
+- [ ] **Project image lightbox** - click to enlarge gallery images
+- [ ] **Blog reading time estimate** - calculate from word count
+- [ ] **Blog post search** - similar to projects filter
+- [ ] **Sitemap.xml** - generate from JSON for better SEO
+- [ ] **robots.txt** - in `public/`
+- [ ] **PWA / offline support** - `vite-plugin-pwa`
+- [ ] **Component tests** - Vitest + React Testing Library
+- [ ] **Analytics** - Netlify Analytics or Plausible (privacy-friendly)
 
 ---
 
@@ -984,7 +984,7 @@ Make sure `netlify.toml` has the redirect rule:
 
 - Confirm the file exists in the correct `public/assets/...` subfolder
 - Confirm the path in JSON starts with `/assets/...` (no `public` prefix)
-- File names are case-sensitive on Linux servers — `Profile.jpg` ≠ `profile.jpg`
+- File names are case-sensitive on Linux servers - `Profile.jpg` ≠ `profile.jpg`
 
 ### TypeScript errors after adding JSON entries
 
