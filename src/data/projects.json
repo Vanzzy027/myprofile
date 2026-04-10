@@ -10,7 +10,12 @@
     "year": 2025,
     "liveUrl": "https://vanskecarrental.netlify.app/",
     "repoUrl": "https://github.com/Vanzzy027/car-rental",
-    "images": ["/assets/projects/car-rental-1.png", "/assets/projects/car-rental-2.png", "/assets/projects/car-rental-3.png", "/assets/projects/car-rental-4.png"],
+    "images": [
+      "/assets/projects/car-rental-1.png",
+      "/assets/projects/car-rental-2.png",
+      "/assets/projects/car-rental-3.png",
+      "/assets/projects/car-rental-4.png"
+    ],
     "featured": true
   },
   {
@@ -24,7 +29,12 @@
     "year": 2025,
     "liveUrl": null,
     "repoUrl": "https://github.com/Vanzzy027/smart-lighting",
-    "images": ["/assets/projects/smart-lighting-1.jpeg","/assets/projects/smart-lighting-2.jpeg","/assets/projects/smart-lighting-3.jpeg","/assets/projects/smart-lighting-4.jpeg"],
+    "images": [
+      "/assets/projects/smart-lighting-1.jpeg",
+      "/assets/projects/smart-lighting-2.jpeg",
+      "/assets/projects/smart-lighting-3.jpeg",
+      "/assets/projects/smart-lighting-4.jpeg"
+    ],
     "featured": true
   },
   {
@@ -38,7 +48,7 @@
     "year": 2025,
     "liveUrl": null,
     "repoUrl": "https://github.com/Vanzzy027/meal-planner",
-    "images": ["/assets/projects/meal-planner-1.png"],
+    "images": ["/assets/Portfolio/meal_app.png"],
     "featured": false
   },
   {
@@ -52,21 +62,28 @@
     "year": 2024,
     "liveUrl": null,
     "repoUrl": "https://github.com/Vanzzy027/iot-dashboard",
-    "images": ["/assets/projects/iot-dashboard-1.png","/assets/projects/iot-dashboard-2.png","/assets/projects/iot-dashboard-3.png","/assets/projects/iot-dashboard-4.png","/assets/projects/iot-dashboard-5.png","/assets/projects/iot-dashboard-6.png"],
+    "images": [
+      "/assets/projects/iot-dashboard-1.png",
+      "/assets/projects/iot-dashboard-2.png",
+      "/assets/projects/iot-dashboard-3.png",
+      "/assets/projects/iot-dashboard-4.png",
+      "/assets/projects/iot-dashboard-5.png",
+      "/assets/projects/iot-dashboard-6.png"
+    ],
     "featured": true
   },
   {
-    "id": "student-management-system",
-    "title": "Student Management System",
+    "id": "Learning-management-system",
+    "title": "Learning Management System",
     "category": "Software",
-    "tags": ["PHP", "MySQL", "Bootstrap", "CRUD"],
-    "shortDescription": "Web-based student records and grading management system.",
-    "longDescription": "A complete student information system built for academic institutions. Features include student enrollment, course management, grade entry and report generation, and role-based access for admin, lecturers, and students. Built with PHP and MySQL with a Bootstrap frontend.",
+    "tags": ["Node.js", "MySQL", "React js", "CRUD"],
+    "shortDescription": "Web-based student records, online quizzes and grading management system.",
+    "longDescription": "A complete student information system built for academic institutions. Features include student enrollment, course management, grade entry and report generation, and role-based access for admin, lecturers, and students. Built with Node.js and MySQL with a React js frontend.",
     "role": "Backend Developer",
     "year": 2024,
     "liveUrl": null,
     "repoUrl": "https://github.com/Vanzzy027/student-management",
-    "images": ["/assets/projects/sms-1.png"],
+    "images": ["/assets/Portfolio/LMS.jpg"],
     "featured": false
   }
 ]
