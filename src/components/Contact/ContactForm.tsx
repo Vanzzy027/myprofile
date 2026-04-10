@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { Send } from "lucide-react";
 import type { ContactFormData } from "../../types";
 import emailjs from "@emailjs/browser"; // to be removed when i switch to Netlify functions + Resend
@@ -34,8 +33,6 @@ const schema = z.object({
   subject: z.string().min(4, "Subject must be at least 4 characters"),
   message: z.string().min(20, "Message must be at least 20 characters"),
 });
-
-type Status = "idle" | "sending" | "success" | "error";
 
 export default function ContactForm() {
   const {
