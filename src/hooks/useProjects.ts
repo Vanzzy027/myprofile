@@ -1,27 +1,21 @@
 import { useMemo, useState } from "react";
-import projectsDataJson from "../data/projects.json";
-import type { Project } from "../types";
+import { projects } from "../data/site";
 
-// Validate imported JSON
-const projects: Project[] = Array.isArray(projectsDataJson) ? projectsDataJson : [];
+const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
 
 export function useProjects() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
 
-  const categories = useMemo(
-    () => ["All", ...Array.from(new Set(projects.map((p) => p.category)))],
-    []
-  );
-
   const filtered = useMemo(() => {
+    const q = search.toLowerCase();
     return projects.filter((p) => {
       const matchCat = category === "All" || p.category === category;
       const matchSearch =
-        search === "" ||
-        p.title.toLowerCase().includes(search.toLowerCase()) ||
-        p.tags.some((t) => t.toLowerCase().includes(search.toLowerCase())) ||
-        p.shortDescription.toLowerCase().includes(search.toLowerCase());
+        q === "" ||
+        p.title.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q)) ||
+        p.shortDescription.toLowerCase().includes(q);
       return matchCat && matchSearch;
     });
   }, [search, category]);
