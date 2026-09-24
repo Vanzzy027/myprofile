@@ -1,39 +1,31 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X, Sun, Moon, Code2 } from "lucide-react";
+import { useTheme } from "../../hooks/useTheme";
+import { NAV } from "./nav";
 
-const NAV = [
-  { to: "/",        label: "Home"      },
-  { to: "/about",   label: "About"     },
-  { to: "/projects",label: "Projects"  },
-  { to: "/blogs",   label: "Blog"      },
-  { to: "/events",  label: "Events"    },
-  { to: "/contact", label: "Contact"   },
-];
-
-interface HeaderProps { theme: "light" | "dark"; toggleTheme: () => void; }
-
-export default function Header({ theme, toggleTheme }: HeaderProps) {
+export default function Header() {
   const [open, setOpen] = useState(false);
+  const { toggleTheme } = useTheme();
 
   return (
     <header className="sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b border-base-300 shadow-sm">
       <div className="container-max flex items-center justify-between h-16 px-4 md:px-8">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-2 font-bold text-lg">
+        <NavLink to="/" className="flex items-center gap-2 font-bold text-lg" aria-label="Evanson Kariuki, home">
           <Code2 className="text-brand-coral" size={22} />
           <span className="gradient-text">Evanson</span>
         </NavLink>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav aria-label="Main" className="hidden lg:flex items-center gap-5">
           {NAV.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               end={to === "/"}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "text-brand-coral after:w-full" : "text-base-content/70 hover:text-base-content"}`
+                `nav-link ${isActive ? "text-brand-coral after:w-full" : "text-base-content/80 hover:text-base-content"}`
               }
             >
               {label}
@@ -42,20 +34,19 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            className="btn btn-ghost btn-sm btn-circle"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          {/* Theme toggle: icons swap with the `dark` class so server and client markup match */}
+          <button onClick={toggleTheme} className="btn btn-ghost btn-sm btn-circle" aria-label="Toggle colour theme">
+            <Sun size={18} className="hidden dark:block" />
+            <Moon size={18} className="block dark:hidden" />
           </button>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden btn btn-ghost btn-sm btn-circle"
+            className="lg:hidden btn btn-ghost btn-sm btn-circle"
             onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -64,7 +55,7 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
 
       {/* Mobile nav */}
       {open && (
-        <div className="md:hidden bg-base-100 border-t border-base-300 px-4 pb-4">
+        <nav id="mobile-nav" aria-label="Main" className="lg:hidden bg-base-100 border-t border-base-300 px-4 pb-4">
           {NAV.map(({ to, label }) => (
             <NavLink
               key={to}
@@ -73,14 +64,14 @@ export default function Header({ theme, toggleTheme }: HeaderProps) {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 `block py-3 text-sm font-medium border-b border-base-200 last:border-0 ${
-                  isActive ? "text-brand-coral" : "text-base-content/70"
+                  isActive ? "text-brand-coral" : "text-base-content/80"
                 }`
               }
             >
               {label}
             </NavLink>
           ))}
-        </div>
+        </nav>
       )}
     </header>
   );
