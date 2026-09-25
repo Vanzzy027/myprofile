@@ -6,9 +6,11 @@ export default function Projects() {
     <div className="section-padding">
       <div className="container-max">
         <SectionHeader
+          as="h1"
           title="Projects"
-          subtitle="A collection of work spanning web, mobile, IoT, and software engineering."
+          subtitle="Web, mobile, IoT and business software, from client websites to ESP32 systems."
         />
+        <h2 className="sr-only">All projects</h2>
         <ProjectsList />
       </div>
     </div>
