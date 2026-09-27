@@ -1,91 +1,99 @@
 import { Download, MapPin, Mail, Phone, Github, Linkedin, Wifi } from "lucide-react";
 import SectionHeader from "../components/Shared/SectionHeader";
 import Tag from "../components/Shared/Tag";
-
-// Types
-import type { AboutData, SkillCategory, Education } from "../types";
-
-// JSON imports
-import aboutDataJson from "../data/about.json";
-import skillsDataJson from "../data/skills.json";
-import educationDataJson from "../data/education.json";
-
-const about: AboutData = aboutDataJson;
-const skillsData: SkillCategory[] = Array.isArray(skillsDataJson) ? skillsDataJson : [];
-const educationData: Education[] = Array.isArray(educationDataJson) ? educationDataJson : [];
+import AboutFacts from "../components/About/AboutFacts";
+import ExperienceList from "../components/About/ExperienceList";
+import { education, person, skills } from "../data/site";
 
 export default function About() {
   return (
     <div className="section-padding">
       <div className="container-max">
-        <SectionHeader title="About Me" subtitle="Engineer, builder, problem-solver." />
+        <SectionHeader as="h1" title="About Evanson Kariuki" subtitle="Engineer, builder and personal banking adviser in Embu, Kenya." />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Left */}
-          <div className="flex flex-col items-center lg:items-start gap-4">
-            <div className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-brand-coral/30 shadow-xl">
-              <img src={about.photo} alt={about.name} className="w-full h-full object-cover" />
+          <aside className="flex flex-col items-center lg:items-start gap-4">
+            <div className="w-48 h-52 rounded-2xl overflow-hidden border-4 border-brand-coral/30 shadow-xl">
+              <img src={person.photo} alt={person.photoAlt} width={570} height={640} className="w-full h-full object-cover" />
             </div>
 
             <div className="text-center lg:text-left">
-              <h1 className="text-2xl font-bold">{about.name}</h1>
-              <p className="text-base-content/60 text-sm">{about.title}</p>
+              <p className="text-2xl font-bold">{person.name}</p>
+              <p className="text-base-content/70 text-sm">{person.shortTitle}</p>
             </div>
 
             <div className="space-y-2 text-sm">
-              <p className="flex items-center gap-2 text-base-content/60"><MapPin size={14} /> {about.location}</p>
-              <p className="flex items-center gap-2 text-base-content/60"><Wifi size={14} /> Remote-friendly</p>
-              <a href={`mailto:${about.email}`} className="flex items-center gap-2 text-brand-coral hover:underline">
-                <Mail size={14} /> {about.email}
+              <p className="flex items-center gap-2 text-base-content/70"><MapPin size={14} /> {person.location.city}, {person.location.country}</p>
+              <p className="flex items-center gap-2 text-base-content/70"><Wifi size={14} /> Available remotely</p>
+              <a href={`mailto:${person.email}`} className="flex items-center gap-2 text-brand-coral hover:underline">
+                <Mail size={14} /> {person.email}
               </a>
-              <p className="flex items-center gap-2 text-base-content/60"><Phone size={14} /> {about.phone}</p>
+              <a href={`tel:${person.phoneE164}`} className="flex items-center gap-2 text-base-content/70 hover:text-brand-coral">
+                <Phone size={14} /> {person.phone}
+              </a>
             </div>
 
             <div className="flex gap-3">
-              <a href={about.social.github} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm gap-1">
+              <a href={person.social.github} target="_blank" rel="noopener" className="btn btn-ghost btn-sm gap-1">
                 <Github size={15} /> GitHub
               </a>
-              <a href={about.social.linkedin} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm gap-1">
+              <a href={person.social.linkedin} target="_blank" rel="noopener" className="btn btn-ghost btn-sm gap-1">
                 <Linkedin size={15} /> LinkedIn
               </a>
             </div>
 
-            <a href={about.cvUrl} download className="btn btn-primary btn-sm gap-2 w-full">
+            <a href={person.cvUrl} download className="btn btn-primary btn-sm gap-2 w-full">
               <Download size={15} /> Download CV
             </a>
-          </div>
+          </aside>
 
-          {/* Right - Skills & Education */}
-          <div className="lg:col-span-2 space-y-10">
-            <div>
-              <h2 className="text-xl font-bold mb-4">Technical Skills</h2>
+          {/* Right */}
+          <div className="lg:col-span-2 space-y-12">
+            <AboutFacts />
+
+            <section aria-labelledby="experience-heading">
+              <h2 id="experience-heading" className="text-2xl font-bold mb-6">Experience</h2>
+              <ExperienceList />
+            </section>
+
+            <section aria-labelledby="skills-heading">
+              <h2 id="skills-heading" className="text-2xl font-bold mb-4">Technical Skills</h2>
               <div className="space-y-4">
-                {skillsData.map((group) => (
+                {skills.map((group) => (
                   <div key={group.category}>
-                    <p className="text-sm font-semibold text-brand-coral mb-2">{group.category}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {group.items.map((item) => <Tag key={item} label={item} size="md" />)}
-                    </div>
+                    <h3 className="text-sm font-semibold text-brand-coral mb-2">{group.category}</h3>
+                    <ul className="flex flex-wrap gap-2">
+                      {group.items.map((item) => <li key={item}><Tag label={item} size="md" /></li>)}
+                    </ul>
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
-            <div>
-              <h2 className="text-xl font-bold mb-4">Education</h2>
-              <div className="space-y-4">
-                {educationData.map((edu) => (
-                  <div key={edu.institution} className="card bg-base-200 border border-base-300 p-4">
-                    <p className="font-semibold">{edu.institution}</p>
-                    <p className="text-sm text-base-content/70">{edu.degree} - {edu.field}</p>
-                    <div className="flex justify-between text-xs text-base-content/40 mt-1">
+            <section aria-labelledby="education-heading">
+              <h2 id="education-heading" className="text-2xl font-bold mb-4">Education &amp; Certifications</h2>
+              <ul className="space-y-4">
+                {education.map((edu) => (
+                  <li key={`${edu.institution}-${edu.credential}`} className="card bg-base-200 border border-base-300 p-4">
+                    <h3 className="font-semibold">{edu.credential}{edu.field && edu.field !== edu.credential ? `, ${edu.field}` : ""}</h3>
+                    <p className="text-sm text-base-content/80">{edu.institution}</p>
+                    <div className="flex justify-between text-xs text-base-content/70 mt-1">
                       <span>{edu.year}</span>
                       {edu.grade && <span>{edu.grade}</span>}
                     </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </section>
+
+            <section aria-labelledby="community-heading">
+              <h2 id="community-heading" className="text-2xl font-bold mb-2">Community</h2>
+              <p className="text-base-content/80">
+                Former IoT &amp; Robotics Organizer at Google Developer Groups on Campus (GDGoC), University of Embu, running
+                hands-on ESP32, sensor and robotics sessions for students.
+              </p>
+            </section>
           </div>
         </div>
       </div>
