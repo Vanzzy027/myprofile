@@ -1,13 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
-@tailwind base;
+/* daisyUI 5 ships its styles in native CSS layers (it targets Tailwind 4). Tailwind 3's
+   preflight is unlayered and would override them (button colours, borders, padding),
+   so it goes in a native layer declared first, which gives it the lowest priority. */
+@layer preflight {
+  @tailwind base;
+}
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Brand themes (daisyUI 5 reads these --color-* variables; its built-in themes are
+     disabled in tailwind.config.ts). Coral is darkened in light mode so coral text
+     and white-on-coral buttons meet WCAG AA. */
+  :root {
+    /* daisyUI 5 default shape tokens (normally supplied by its built-in themes) */
+    --radius-selector: 0.5rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
+  }
+  :root, html[data-theme="light"] {
+    color-scheme: light;
+    --color-coral: 180 68 26;
+    --color-on-coral: 255 255 255;
+    --color-primary: #2E5A87;        --color-primary-content: #ffffff;
+    --color-secondary: #B4441A;      --color-secondary-content: #ffffff;
+    --color-accent: #364737;         --color-accent-content: #ffffff;
+    --color-neutral: #404461;        --color-neutral-content: #ffffff;
+    --color-base-100: #f8f9fa;
+    --color-base-200: #eef0f2;
+    --color-base-300: #dde1e5;
+    --color-base-content: #102C26;
+    --color-info: #2E5A87;           --color-info-content: #ffffff;
+    --color-success: #364737;        --color-success-content: #ffffff;
+    --color-warning: #B4441A;        --color-warning-content: #ffffff;
+    --color-error: #9B2C1F;          --color-error-content: #ffffff;
+  }
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --color-coral: 255 138 91;
+    --color-on-coral: 16 44 38;
+    --color-primary: #FF8A5B;        --color-primary-content: #102C26;
+    --color-secondary: #2E5A87;      --color-secondary-content: #ffffff;
+    --color-accent: #364737;         --color-accent-content: #ffffff;
+    --color-neutral: #404461;        --color-neutral-content: #ffffff;
+    --color-base-100: #0d1f1b;
+    --color-base-200: #102C26;
+    --color-base-300: #023020;
+    --color-base-content: #e8ede8;
+    --color-info: #7FB2E5;           --color-info-content: #102C26;
+    --color-success: #6FCF97;        --color-success-content: #102C26;
+    --color-warning: #FF8A5B;        --color-warning-content: #102C26;
+    --color-error: #F28B82;          --color-error-content: #102C26;
+  }
+
   html { scroll-behavior: smooth; }
   body { @apply font-sans antialiased transition-colors duration-300; }
-  ::selection { @apply bg-brand-coral/30 text-brand-forest; }
+  ::selection { @apply bg-brand-coral/30; }
 }
 
 @layer components {
@@ -16,8 +68,10 @@
   .card-hover       { @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl; }
   .gradient-text    {
     @apply bg-gradient-to-r from-brand-coral via-brand-ocean to-brand-sage
+           dark:via-sky-300 dark:to-emerald-300
            bg-clip-text text-transparent;
   }
+  .prose pre       { @apply max-w-full overflow-x-auto; }
   .nav-link {
     @apply relative text-sm font-medium transition-colors duration-200
            after:absolute after:bottom-0 after:left-0 after:h-0.5
