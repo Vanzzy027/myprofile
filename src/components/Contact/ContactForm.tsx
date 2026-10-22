@@ -1,13 +1,11 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send } from "lucide-react";
+import { Toaster, toast } from "sonner";
 import type { ContactFormData } from "../../types";
-import emailjs from "@emailjs/browser"; // to be removed when i switch to Netlify functions + Resend
-import { Toaster } from "sonner";
-import { toast } from "sonner";
-
-<Toaster position="top-right" richColors />;
 
 const blockedEmails = [
   "test@test.com",
@@ -34,134 +32,130 @@ const schema = z.object({
   message: z.string().min(20, "Message must be at least 20 characters"),
 });
 
+const inputClass = (hasError: boolean, base: string) =>
+  `${base} w-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${hasError ? `${base.split(" ")[0]}-error` : ""}`;
+
 export default function ContactForm() {
+  const [params] = useSearchParams();
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    setValue,
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(schema),
     mode: "onChange",
   });
 
-  // Shortterm: To work with emailjs, which is free and easier to set up without a backend. Will switch to Netlify functions + Resend when I get a domain and can set up email forwarding.
+  // Prefill the subject from links such as /contact?subject=HFCB%20personal%20banking%20enquiry
+  useEffect(() => {
+    const subject = params.get("subject");
+    if (subject) setValue("subject", subject.slice(0, 120));
+  }, [params, setValue]);
+
+  // Sent through netlify/functions/sendEmail.ts (Resend). Use `netlify dev` to test it locally.
   const onSubmit = async (data: ContactFormData) => {
     const toastId = toast.loading("Sending message...");
 
     try {
-      await emailjs.send(
-        "service_9f8k4b7",
-        "template_iu8zmhc",
-        {
-          name: data.name,
-          email: data.email,
-          subject: `[Portfolio] ${data.subject}`,
-          message: data.message,
-        },
-        "lTt7-qCCYfkQmJpzy",
-      );
+      const res = await fetch("/.netlify/functions/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(`sendEmail responded ${res.status}`);
 
-      toast.success("Message sent successfully 🚀", { id: toastId });
+      toast.success("Message sent successfully", { id: toastId });
       reset();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to send message ❌", { id: toastId });
+      toast.error("Failed to send message. Please email me directly.", { id: toastId });
     }
   };
 
-  //To work when i get a domain
-
-  // const onSubmit = async (data: ContactFormData) => {
-  //   setStatus("sending");
-  //   try {
-  //     const res = await fetch("/.netlify/functions/sendEmail", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(data),
-  //     });
-  //     if (!res.ok) throw new Error("Send failed");
-  //     setStatus("success");
-  //     reset();
-  //   } catch {
-  //     setStatus("error");
-  //   }
-  // };
+  const describedBy = (field: keyof ContactFormData) => (errors[field] ? `${field}-error` : undefined);
 
   return (
     <>
       <Toaster position="top-right" richColors />
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6" aria-label="Contact form">
         {/* Name + Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="form-control">
-            <label className="block font-medium mb-1">Your Name</label>
+            <label htmlFor="name" className="block font-medium mb-1">Your Name</label>
             <input
+              id="name"
+              autoComplete="name"
               {...register("name")}
               placeholder="Full Name"
-              className={`input input-bordered w-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${
-                errors.name ? "input-error" : ""
-              }`}
+              aria-invalid={!!errors.name}
+              aria-describedby={describedBy("name")}
+              className={inputClass(!!errors.name, "input input-bordered")}
             />
             {errors.name && (
-              <p className="text-error text-sm mt-1">{errors.name.message}</p>
+              <p id="name-error" className="text-error text-sm mt-1">{errors.name.message}</p>
             )}
           </div>
 
           <div className="form-control">
-            <label className="block font-medium mb-1">Email Address</label>
+            <label htmlFor="email" className="block font-medium mb-1">Email Address</label>
             <input
+              id="email"
+              autoComplete="email"
               {...register("email")}
               type="email"
-              placeholder="email@example.com"
-              className={`input input-bordered w-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${
-                errors.email ? "input-error" : ""
-              }`}
+              placeholder="you@yourdomain.com"
+              aria-invalid={!!errors.email}
+              aria-describedby={describedBy("email")}
+              className={inputClass(!!errors.email, "input input-bordered")}
             />
             {errors.email && (
-              <p className="text-error text-sm mt-1">{errors.email.message}</p>
+              <p id="email-error" className="text-error text-sm mt-1">{errors.email.message}</p>
             )}
           </div>
         </div>
 
         {/* Subject */}
         <div className="form-control">
-          <label className="block font-medium mb-1">Subject</label>
+          <label htmlFor="subject" className="block font-medium mb-1">Subject</label>
           <input
+            id="subject"
             {...register("subject")}
-            placeholder="Project enquiry / Collaboration"
-            className={`input input-bordered w-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${
-              errors.subject ? "input-error" : ""
-            }`}
+            placeholder="Project enquiry / Personal banking enquiry"
+            aria-invalid={!!errors.subject}
+            aria-describedby={describedBy("subject")}
+            className={inputClass(!!errors.subject, "input input-bordered")}
           />
           {errors.subject && (
-            <p className="text-error text-sm mt-1">{errors.subject.message}</p>
+            <p id="subject-error" className="text-error text-sm mt-1">{errors.subject.message}</p>
           )}
         </div>
 
         {/* Message */}
         <div className="form-control">
-          <label className="block font-medium mb-1">Message</label>
+          <label htmlFor="message" className="block font-medium mb-1">Message</label>
           <textarea
+            id="message"
             {...register("message")}
             rows={5}
-            placeholder="Tell me about your project or idea…"
-            className={`textarea textarea-bordered w-full resize-none transition-all focus:outline-none focus:ring-2 focus:ring-primary/40 ${
-              errors.message ? "textarea-error" : ""
-            }`}
+            placeholder="Tell me about your project, idea or banking need…"
+            aria-invalid={!!errors.message}
+            aria-describedby={describedBy("message")}
+            className={`${inputClass(!!errors.message, "textarea textarea-bordered")} resize-none`}
           />
           {errors.message && (
-            <p className="text-error text-sm mt-1">{errors.message.message}</p>
+            <p id="message-error" className="text-error text-sm mt-1">{errors.message.message}</p>
           )}
         </div>
 
         {/* Submit */}
         <button
           type="submit"
-          disabled={status === "sending"}
+          disabled={isSubmitting}
           className="btn btn-primary w-full gap-2"
         >
-          {status === "sending" ? (
+          {isSubmitting ? (
             <>
               <span className="loading loading-spinner loading-sm" />
               Sending…

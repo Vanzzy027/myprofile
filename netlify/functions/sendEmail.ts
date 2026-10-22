@@ -1,86 +1,66 @@
-import type { Handler } from "@netlify/functions";
+// Contact form handler: emails each message through Resend.
+// Env (Netlify UI → Site configuration → Environment variables, scope "Functions"):
+//   RESEND_API_KEY  required
+//   CONTACT_EMAIL   inbox that receives messages (default mathengevan@gmail.com)
+//   CONTACT_FROM    sender on a Resend-verified domain (default ekariuki@britech.co.ke)
 
-export const handler: Handler = async (event) => {
-  // Only allow POST
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
-  }
+const LIMITS = { name: 100, email: 254, subject: 150, message: 5000 } as const;
+type Field = keyof typeof LIMITS;
 
-  // Safe JSON parsing
-  let data;
+const json = (status: number, body: unknown) =>
+  new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+
+const escapeHtml = (s: string) =>
+  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+
+export default async (req: Request) => {
+  if (req.method !== "POST") return json(405, { error: "Method not allowed" });
+
+  let data: Record<string, unknown>;
   try {
-    data = JSON.parse(event.body || "{}");
-  } catch (err) {
-    console.error("Invalid JSON:", err);
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "Invalid JSON body" }),
-    };
+    data = (await req.json()) as Record<string, unknown>;
+  } catch {
+    return json(400, { error: "Invalid JSON body" });
   }
 
-  const { name, email, subject, message } = data;
+  const fields = {} as Record<Field, string>;
+  for (const key of Object.keys(LIMITS) as Field[]) {
+    const value = typeof data[key] === "string" ? data[key].trim() : "";
+    if (!value || value.length > LIMITS[key]) return json(400, { error: `Invalid ${key}` });
+    fields[key] = value;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return json(400, { error: "Invalid email" });
 
-  // Validate inputs
-  if (!name || !email || !subject || !message) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "Missing required fields" }),
-    };
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is missing");
+    return json(500, { error: "Server misconfigured" });
   }
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "mathengevan@gmail.com";
+  const { name, email, subject, message } = fields;
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: `Evanson Kariuki Portfolio <${process.env.CONTACT_FROM || "ekariuki@britech.co.ke"}>`,
+      to: [process.env.CONTACT_EMAIL || "mathengevan@gmail.com"],
+      reply_to: email,
+      subject: `[Portfolio] ${subject.replace(/[\r\n]+/g, " ")}`,
+      text: `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`,
+      html: `
+        <h2>New portfolio message</h2>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
+        <hr />
+        <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
+      `,
+    }),
+  });
 
-  if (!RESEND_API_KEY) {
-    console.error("❌ RESEND_API_KEY is missing");
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Server misconfigured" }),
-    };
+  if (!res.ok) {
+    console.error("Resend error", res.status, await res.text());
+    return json(502, { error: "Could not send message" });
   }
-
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Portfolio <onboarding@resend.dev>",
-        to: [CONTACT_EMAIL],
-        reply_to: email,
-        subject: `[Portfolio] ${subject}`,
-        html: `
-          <h2>New Portfolio Message</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <hr />
-          <p>${message.replace(/\n/g, "<br/>")}</p>
-        `,
-      }),
-    });
-
-    const text = await response.text();
-    console.log("📨 Resend response:", text);
-
-    if (!response.ok) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: text }),
-      };
-    }
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ success: true }),
-    };
-  } catch (err) {
-    console.error("🔥 Unexpected error:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Internal server error" }),
-    };
-  }
+  return json(200, { success: true });
 };
