@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr scripts/prerender.ts --outDir dist-server && node dist-server/prerender.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "indexnow": "vite build --ssr scripts/indexnow.ts --outDir dist-server --logLevel warn && node dist-server/indexnow.js"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^5.2.2",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
@@ -25,11 +25,9 @@
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@netlify/functions": "^5.1.5",
-    "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.27",
     "daisyui": "^5.5.19",
@@ -43,9 +41,7 @@
     "typescript-eslint": "^8.57.0",
     "vite": "^8.0.1"
   },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "engines": {
+    "node": ">=20"
+  }
 }
