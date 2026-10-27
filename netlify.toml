@@ -3,7 +3,16 @@
   publish   = "dist"
   functions = "netlify/functions"
 
+[build.environment]
+  NODE_VERSION = "22"
+  # Search engine verification codes are public (they end up in the page HTML).
+  VITE_GOOGLE_SITE_VERIFICATION = "kJpyhtfZCt5jkPaLEsnDZOTZKvi-eEiCGoPqU5HKp7Q"
+  # VITE_BING_SITE_VERIFICATION = "" # TODO: only needed if Bing isn't imported from Search Console
+
+# Pages are prerendered to static HTML (e.g. /about -> about.html), so there is no
+# SPA catch-all: unknown URLs get dist/404.html with a real 404 status.
+
 [[redirects]]
-  from   = "/*"
-  to     = "/index.html"
-  status = 200
+  from   = "/projects/Learning-management-system"
+  to     = "/projects/learning-management-system"
+  status = 301
