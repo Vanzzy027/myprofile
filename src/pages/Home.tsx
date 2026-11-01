@@ -85,7 +85,7 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-2">Software at {brivemarc.name}</h3>
               <p className="text-base-content/80 mb-4">
                 As co-founder, I build websites, web and mobile apps, POS systems and IoT solutions for businesses
-                in Embu, Nairobi and across Kenya.
+                in Nyeri, Nairobi and across Kenya.
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link to="/services" className="btn btn-primary btn-sm gap-1">

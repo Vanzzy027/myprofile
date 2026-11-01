@@ -9,7 +9,7 @@ export default function About() {
   return (
     <div className="section-padding">
       <div className="container-max">
-        <SectionHeader as="h1" title="About Evanson Kariuki" subtitle="Engineer, builder and personal banking adviser in Embu, Kenya." />
+        <SectionHeader as="h1" title="About Evanson Kariuki" subtitle="Engineer, builder and personal banking adviser in Nyeri, Kenya." />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Left */}

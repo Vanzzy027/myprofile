@@ -148,15 +148,15 @@ function baseMeta(path: string): Omit<RouteMeta, "jsonLd"> | null {
       return {
         ...page(
           "Evanson Kariuki | Fullstack Software Engineer, Kenya",
-          "Evanson Kariuki: fullstack software engineer in Embu, Kenya (React, TypeScript, Node.js, IoT), HFCB personal banking DSR and Brivemarc Technologies co-founder.",
+          "Evanson Kariuki: fullstack software engineer in Nyeri, Kenya (React, TypeScript, Node.js, IoT), HFCB personal banking DSR and Brivemarc Technologies co-founder.",
         ),
         preloadImage: person.photo,
       };
     case "/about":
       return {
         ...page(
-          "About Evanson Kariuki | Software Engineer in Embu, Kenya",
-          "Who Evanson (Evans) Kariuki is: fullstack and IoT engineer, HFCB personal banking DSR, Brivemarc co-founder and BSc IT graduate based in Embu, Kenya.",
+          "About Evanson Kariuki | Software Engineer in Nyeri, Kenya",
+          "Who Evanson (Evans) Kariuki is: fullstack and IoT engineer, HFCB personal banking DSR, Brivemarc co-founder and BSc IT graduate based in Nyeri, Kenya.",
           "About",
         ),
         type: "profile",
@@ -170,7 +170,7 @@ function baseMeta(path: string): Omit<RouteMeta, "jsonLd"> | null {
     case "/services":
       return page(
         "Web & Software Development Services, Kenya | Evanson Kariuki",
-        "Web, mobile, SaaS, database and IoT development from Brivemarc Technologies, a website development company in Kenya serving Embu, Nairobi and beyond.",
+        "Web, mobile, SaaS, database and IoT development from Brivemarc Technologies, a website development company in Kenya serving Nyeri, Nairobi and beyond.",
         "Services",
       );
     case "/personal-banking":
@@ -194,7 +194,7 @@ function baseMeta(path: string): Omit<RouteMeta, "jsonLd"> | null {
     case "/contact":
       return page(
         "Contact Evanson Kariuki | Hire a Developer in Kenya",
-        "Contact Evanson Kariuki about web, mobile or IoT projects, collaborations, or HFCB personal banking enquiries. Based in Embu, Kenya and available remotely.",
+        "Contact Evanson Kariuki about web, mobile or IoT projects, collaborations, or HFCB personal banking enquiries. Based in Nyeri, Kenya and available remotely.",
         "Contact",
       );
   }
@@ -333,8 +333,8 @@ export function buildHeadTags(meta: RouteMeta): HeadTag[] {
     });
   }
 
-  // Search engine verification codes come from Netlify environment variables.
-  const google = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION;
+  // Verification codes are public (they're in the HTML); env vars can override them.
+  const google = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION || "kJpyhtfZCt5jkPaLEsnDZOTZKvi-eEiCGoPqU5HKp7Q";
   const bing = import.meta.env.VITE_BING_SITE_VERIFICATION;
   if (google) tags.push(m({ name: "google-site-verification", content: google }));
   if (bing) tags.push(m({ name: "msvalidate.01", content: bing }));

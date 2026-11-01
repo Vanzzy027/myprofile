@@ -1,9 +1,9 @@
 # Evanson Kariuki - Portfolio
 
 Personal site of Evanson Kariuki: fullstack software engineer, HFCB personal banking DSR and co-founder of Brivemarc Technologies.
-Live at **https://ekariuki.britech.co.ke** (Netlify).
+Live at **https://ekariuki.britech.co.ke** (Vercel).
 
-> **Stack:** React 19 · TypeScript · Vite 8 · React Router 7 · Tailwind CSS 3 · daisyUI 5 · lucide-react · react-hook-form · Zod · EmailJS · Netlify
+> **Stack:** React 19 · TypeScript · Vite 8 · React Router 7 · Tailwind CSS 3 · daisyUI 5 · lucide-react · react-hook-form · Zod · Resend · Vercel
 
 ## Editing content
 
@@ -38,23 +38,23 @@ that search engines and AI crawlers can read without JavaScript. React then hydr
 | `src/components/Seo/HeadManager.tsx` | Updates `<head>` on client-side navigation |
 | `scripts/prerender.ts` | Build-time prerenderer |
 | `src/seo/indexnow.ts` | IndexNow key and submit helper |
-| `netlify/functions/deploy-succeeded.ts` | Pings IndexNow (Bing) after every production deploy |
+| `.github/workflows/indexnow.yml` | Pings IndexNow (Bing) after every Vercel production deploy |
+| `vercel.json` | Clean URLs (`/about` serves `about.html`) and redirects |
 | `scripts/indexnow.ts` | Manual IndexNow ping (`pnpm indexnow [urls...]`) |
 
 New routes must be added to both `src/App.tsx` and `getAllRoutes()` / `baseMeta()` in `src/seo/meta.ts`.
 
 ## Environment variables
 
-See `.env.example`. Public build values are in `netlify.toml`; secrets go in the Netlify UI
-(Site configuration -> Environment variables).
+See `.env.example`. Set these in Vercel (Project -> Settings -> Environment Variables).
 
-| Variable | Where | Purpose |
+| Variable | Needed | Purpose |
 |---|---|---|
-| `VITE_GOOGLE_SITE_VERIFICATION` | `netlify.toml` | Google Search Console meta tag `content` value |
-| `VITE_BING_SITE_VERIFICATION` | `netlify.toml` | Bing `msvalidate.01` value (not needed if Bing imports from Google) |
-| `RESEND_API_KEY` | Netlify UI | Resend API key for the contact form |
-| `CONTACT_EMAIL` | Netlify UI | Inbox that receives form messages (default `mathengevan@gmail.com`) |
-| `CONTACT_FROM` | Netlify UI | Sender address on a Resend-verified domain (default `ekariuki@britech.co.ke`) |
+| `VITE_GOOGLE_SITE_VERIFICATION` | optional | Overrides the Google code set in `src/seo/meta.ts` |
+| `VITE_BING_SITE_VERIFICATION` | optional | Bing `msvalidate.01` value (not needed if Bing imports from Google) |
+| `RESEND_API_KEY` | required | Resend API key for the contact form |
+| `CONTACT_EMAIL` | optional | Inbox that receives form messages (default `mathengevan@gmail.com`) |
+| `CONTACT_FROM` | optional | Sender address on a Resend-verified domain (default `ekariuki@britech.co.ke`) |
 
 ## Running locally
 
@@ -83,14 +83,14 @@ native `@layer preflight` so it doesn't override daisyUI 5's layered component s
 ## Contact form
 
 `src/components/Contact/ContactForm.tsx` validates input with zod and POSTs it to
-`netlify/functions/sendEmail.ts`, which sends it through Resend from `CONTACT_FROM` to `CONTACT_EMAIL`,
+`api/sendEmail.ts` (a Vercel function), which sends it through Resend from `CONTACT_FROM` to `CONTACT_EMAIL`,
 with the visitor's address as Reply-To. The function escapes all input and caps field lengths.
 
-To test it locally, run `netlify dev` (the plain Vite dev server doesn't run functions).
+To test it locally, run `vercel dev` (the plain Vite dev server doesn't run functions).
 
 ## Maintainer
 
-**Evanson Kariuki** - Embu, Kenya
+**Evanson Kariuki** - Nyeri, Kenya
 
 - Email: ekariuki@britech.co.ke
 - GitHub: https://github.com/Vanzzy027

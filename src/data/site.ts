@@ -27,7 +27,7 @@ export const person: Person = {
   headline:
     "Fullstack Software Engineer & Personal Banking DSR at HFCB. Co-Founder, Brivemarc Technologies.",
   shortTitle: "Fullstack Software Engineer · HFCB Personal Banking",
-  location: { city: "Embu", region: "Embu County", country: "Kenya", countryCode: "KE" },
+  location: { city: "Nyeri", region: "Nyeri County", country: "Kenya", countryCode: "KE" },
   summary:
     "I build web, mobile and IoT systems with React, TypeScript and Node.js, and I help Kenyans access personal loans, property financing, insurance and bank accounts at HFCB. Working on both sides of finance and software is why I build fintech that fits how people actually borrow and pay.",
   email: "ekariuki@britech.co.ke",

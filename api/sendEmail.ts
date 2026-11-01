@@ -1,5 +1,5 @@
-// Contact form handler: emails each message through Resend.
-// Env (Netlify UI → Site configuration → Environment variables, scope "Functions"):
+// Vercel function: POST /api/sendEmail. Emails each contact form message through Resend.
+// Env (Vercel → Project → Settings → Environment Variables):
 //   RESEND_API_KEY  required
 //   CONTACT_EMAIL   inbox that receives messages (default mathengevan@gmail.com)
 //   CONTACT_FROM    sender on a Resend-verified domain (default ekariuki@britech.co.ke)
@@ -13,9 +13,7 @@ const json = (status: number, body: unknown) =>
 const escapeHtml = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
-export default async (req: Request) => {
-  if (req.method !== "POST") return json(405, { error: "Method not allowed" });
-
+export async function POST(req: Request) {
   let data: Record<string, unknown>;
   try {
     data = (await req.json()) as Record<string, unknown>;
@@ -63,4 +61,4 @@ export default async (req: Request) => {
     return json(502, { error: "Could not send message" });
   }
   return json(200, { success: true });
-};
+}

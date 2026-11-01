@@ -29,7 +29,7 @@ if (!template.includes("<!--app-head-->") || !template.includes("<!--app-html-->
   throw new Error("index.html is missing the <!--app-head--> or <!--app-html--> placeholder");
 }
 
-// Netlify serves /about from about.html, which avoids trailing-slash redirects.
+// Vercel (cleanUrls in vercel.json) serves /about from about.html, which avoids trailing-slash redirects.
 const outFile = (route: string) =>
   route === "/" ? "index.html" : route === "/404" ? "404.html" : `${route.slice(1)}.html`;
 

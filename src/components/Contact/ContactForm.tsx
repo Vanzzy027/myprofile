@@ -54,12 +54,12 @@ export default function ContactForm() {
     if (subject) setValue("subject", subject.slice(0, 120));
   }, [params, setValue]);
 
-  // Sent through netlify/functions/sendEmail.ts (Resend). Use `netlify dev` to test it locally.
+  // Sent through api/sendEmail.ts (Resend). Use `vercel dev` to test it locally.
   const onSubmit = async (data: ContactFormData) => {
     const toastId = toast.loading("Sending message...");
 
     try {
-      const res = await fetch("/.netlify/functions/sendEmail", {
+      const res = await fetch("/api/sendEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

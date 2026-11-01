@@ -1,5 +1,5 @@
-// Manually notifies IndexNow. Netlify already does this after every production deploy
-// (netlify/functions/deploy-succeeded.ts); use this to resubmit or to submit specific URLs:
+// Manually notifies IndexNow. GitHub Actions already runs this after every production deploy
+// (.github/workflows/indexnow.yml); use this to resubmit or to submit specific URLs:
 //   pnpm indexnow
 //   pnpm indexnow https://ekariuki.britech.co.ke/about
 

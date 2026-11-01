@@ -17,7 +17,7 @@ export default function Services() {
 
         <p className="text-base-content/80 leading-relaxed max-w-3xl mb-12">
           {brivemarc.name} is a website development company in Kenya. We build websites, web apps, mobile apps, POS
-          systems and custom business software for clients in Embu, Nairobi and across the country, from first sketch
+          systems and custom business software for clients in Nyeri, Nairobi and across the country, from first sketch
           to launch and support.
         </p>
 
