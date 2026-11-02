@@ -22,7 +22,13 @@ function App() {
     <Layout>
       <HeadManager />
       <ScrollToTop />
-      <Suspense fallback={<div className="min-h-[60vh]" />}>
+      <Suspense
+        fallback={
+          <div className="min-h-[60vh] flex items-center justify-center" role="status" aria-label="Loading page">
+            <span className="loading loading-spinner loading-lg text-brand-coral" />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/"                 element={<Home />} />
           <Route path="/about"            element={<About />} />
